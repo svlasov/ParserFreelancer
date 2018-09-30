@@ -19,8 +19,8 @@ def work():
         job['title'] = title_elem.text
         job['url'] = title_elem.get_attribute("href")
 
-        days_ago_elem = job_elem.find_element_by_css_selector("span.JobSearchCard-primary-heading-Days")
-        job['days_ago'] = days_ago_elem.text
+        days_left_elem = job_elem.find_element_by_css_selector("span.JobSearchCard-primary-heading-Days")
+        job['days_left'] = days_left_elem.text
 
         # description = block.find('p', class_='JobSearchCard-primary-description').contents[0]
         description_elem = job_elem.find_element_by_css_selector("p.JobSearchCard-primary-description")
