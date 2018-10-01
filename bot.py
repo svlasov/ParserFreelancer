@@ -3,8 +3,13 @@ import logging
 from telegram.ext import Updater, CommandHandler , MessageHandler, RegexHandler, Filters 
 from settings import API_KEY 
 
-def hello(bot, update, user_data):
+def start(bot, update, user_data):
     text = 'Hello!'
+    
+    update.message.reply_text(text)
+
+def search(bot, update, user_data):
+    text = 'Search!'
     
     update.message.reply_text(text)
 
@@ -14,7 +19,8 @@ def start_bot():
     mydisp = mybot.dispatcher
 
     # common command handler
-    mydisp.add_handler(CommandHandler(["start", "hello"], hello, pass_user_data=True))
+    mydisp.add_handler(CommandHandler(["start"], start, pass_user_data=True))
+    mydisp.add_handler(CommandHandler(["search"], search, pass_user_data=True))
     
     mybot.start_polling()
     mybot.idle()
