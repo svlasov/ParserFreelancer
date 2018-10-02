@@ -1,6 +1,6 @@
 import requests
 from random import choice
-from time import sleep
+#from time import sleep
 from random import uniform
 from ast import literal_eval as le
 from bs4 import BeautifulSoup
