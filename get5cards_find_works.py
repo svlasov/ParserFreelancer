@@ -1,7 +1,5 @@
 from bs4 import BeautifulSoup
 import re
-from get5cards_sql import db_session, Workbase
-
 
 def find_works(html):#получаем ссылку, число работ
 	#bonus = ['local=true','&','fixed=true','fixed_min=','fixed_max=','contest=true','contest_min=','contest_max=','hourly=true','languages=','hourly_duration=']#1-6
@@ -24,7 +22,7 @@ def find_works(html):#получаем ссылку, число работ
 		title = block.find('a', class_='JobSearchCard-primary-heading-link').contents[0]#,href = re.compile(regexp))
 		title = title.replace('  ','')
 		title = title.replace('\n','')
-		print(title)
+		#print(title)
 
 		#Заявлено времени назад
 		time = block.find('span', class_='JobSearchCard-primary-heading-Days').contents[0]

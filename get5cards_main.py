@@ -6,7 +6,7 @@
 
 import sqlalchemy
 
-from sql import db_session, Skillbase
+from skilllist_sql import db_session, Skillbase
 
 from get5cards import get_5_cards
 
