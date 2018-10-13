@@ -8,13 +8,18 @@ def hello(bot, update, user_data):
     
     update.message.reply_text(text)
 
+def search():
+
+
+    #  Base bot function
 
 def start_bot():
     mybot = Updater(API_KEY)#(API_KEY)
     mydisp = mybot.dispatcher
 
     # common command handler
-    mydisp.add_handler(CommandHandler(["start", "hello"], hello, pass_user_data=True))
+    mydisp.add_handler(CommandHandler(["hello"], hello, pass_user_data=True))
+    mydisp.add_handler(CommandHandler(["search"], search, pass_user_data=True))
     
     mybot.start_polling()
     mybot.idle()
