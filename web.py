@@ -1,34 +1,23 @@
 from flask import Flask, request, jsonify
 import requests
-import datetime
+
+from mongodb_persist import load_latest_jobs
 
 app = Flask(__name__)
 
-# instead of db
-
-jobs_idx = {}
 
 
 @app.route("/")
-def hello():
+def index():
+    # find latest n (n=5) jobs
+    # find jobs in db and sort by created_at
+    # db.jobs.find().sort({created_at: -1}).limit(1)
 
-    unsorted_list = list(jobs_idx.values())
+    limit = int(request.args.get("limit", 5))
 
-    format = "%a %b %d %H:%M:%S %Z %Y"
+    job_docs = load_latest_jobs(limit)
 
-    for d in unsorted_list:
-        created_at_str = d['created_at']
-        d['created_at_dt'] = datetime.datetime.strptime(created_at_str,format)
-
-    # Source for the lambda:
-    # def sort_dict_by_created_at(d):
-    #     return d['created_at_dt']
-    
-    sort_dict_by_created_at = lambda d: d['created_at_dt']
-    
-    sorted_by_created_at = sorted(unsorted_list, key=sort_dict_by_created_at, reverse=True)
-
-    return jsonify(sorted_by_created_at)
+    return jsonify(job_docs)
 
 
 @app.route("/search")
