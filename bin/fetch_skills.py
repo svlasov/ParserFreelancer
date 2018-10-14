@@ -19,7 +19,7 @@ def main():
     xml = gzip.decompress(resp.content)
 
     # parse
-    soup = BeautifulSoup(xml)#, "xml")
+    soup = BeautifulSoup(xml, features="html.parser")
     url_elems = soup.find_all("loc")
     urls = [elm.text for elm in url_elems]
 
