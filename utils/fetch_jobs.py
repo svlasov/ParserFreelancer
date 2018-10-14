@@ -91,7 +91,7 @@ def main():
     # load skill links from json file
     try:
         poll_jobs_by_skills_json()
-    except KeyboardInterrupt as ctrl_c:
+    except KeyboardInterrupt:
         print_summary()
     print_summary()
     
